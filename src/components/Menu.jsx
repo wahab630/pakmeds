@@ -6,25 +6,17 @@ import { useGetProductsQuery } from '../services/productsApi';
 const Menu = () => {
     const { error, data, isLoading } = useGetProductsQuery();
 
+    if (isLoading) { return <div></div> }
 
-    if (isLoading) {
-        return <div></div>
-
-    }
-
-    if (error) {
-        return <p>Error: {error.message}</p>;
-
-    }
+    if (error) { return <p>Error: {error.message}</p>; }
 
     const category = [...new Set(data.map(d => d.category))]
-
 
     const Navdata = [
         { id: 1, name: 'Home', url: '/' },
         { id: 2, name: 'About', url: '/about' },
-        { id: 3, name: 'Categories', subMenu: true },
-        { id: 4, name: 'Contact', url: '/contact' },
+        // { id: 3, name: 'Categories', subMenu: true },
+        // { id: 4, name: 'Contact', url: '/contact' },
     ];
 
     return (
@@ -39,10 +31,10 @@ const Menu = () => {
 
                                 {
                                     category.map((item, i) => (
-                                            <NavLink key={i} to={`/collections/${item.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-')}`}>
-                                        <li className="capitalize h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">{item}
-                                        </li>
-                                            </NavLink>
+                                        <NavLink key={i} to={`/collections/${item.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-')}`}>
+                                            <li className="capitalize h-12 flex justify-between items-center px-3 hover:bg-black/[0.03] rounded-md">{item}
+                                            </li>
+                                        </NavLink>
                                     ))
                                 }
                             </ul>

@@ -216,7 +216,7 @@ input[type]:checked ~ span.mid {
   position: relative;
   text-align: center;
   border-radius: 0.45em;
-  font-family: "Arial";
+  /* font-family: "Arial"; */
   transition: background 0.3s;
 }
 

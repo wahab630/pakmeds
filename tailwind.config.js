@@ -5,11 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        'oswd': 'Oswald',
-      }
-    },
+    // extend: {
+    //   fontFamily: {
+    //     'oswd': 'Oswald',
+    //   }
+    // },
   },
   plugins: [],
 }

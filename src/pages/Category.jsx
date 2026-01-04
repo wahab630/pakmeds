@@ -34,11 +34,6 @@ const Category = () => {
         {/* filter side start */}
 
         <div></div>
-
-        {/* filter side end */}
-
-        {/* products start */}
-
         <div className="flex flex-wrap items-center justify-center gap-4">
           {products.map((product) => {
             const slug = product.title

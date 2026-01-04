@@ -1,14 +1,15 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import { useDispatch } from 'react-redux';
-import { addToWish } from '../features/addToWish/addWishSlice';
+// import { IoMdHeartEmpty } from 'react-icons/io';
+// import { useDispatch } from 'react-redux';
+// import { addToWish } from '../features/addToWish/addWishSlice';
 import 'react-toastify/dist/ReactToastify.css';
 import { useGetProductsQuery } from '../services/productsApi';
 import ProductIsLoaidng from './ProductIsLoaidng';
 
 const ProductCard = () => {
-  const dispatch = useDispatch();
+
+  // const dispatch = useDispatch();
   const { error, data, isLoading } = useGetProductsQuery();
 
   if (isLoading) return <ProductIsLoaidng />;
@@ -18,28 +19,43 @@ const ProductCard = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  const handleAddToWish = (prod) => {
-    dispatch(addToWish(prod));
-  };
+  // const handleAddToWish = (prod) => {
+  //   dispatch(addToWish(prod));
+  // };
 
-  
 
   return (
     <>
+     <div  className="border product group hover:shadow-md flex duration-300 flex-col hover:shadow-red-400 hover:translate-y-[-8px] transition-all h-[22rem] rounded-2xl w-60 py-3 px-1 bg-white overflow-hidden relative"
+          >
+            <figure className="w-full h-52 overflow-hidden">
+              <img src="slide-1.png" alt="no img"
+                className="h-full w-full object-contain group-hover:scale-105 transition-all duration-300"
+              />
+            </figure>
+            <div className="content h-[40%]  pt-4 px-3">
+              <p className="title text-xs font-bold mb-2 group-hover:text-red-700 transition-all duration-300">
+                Name of medicine
+              </p>
+              <ul className="flex items-center justify-between">
+                <div className="text-xs mb-2">
+                 
+                  Rs:  <del>200</del> 100
+                </div>
+                
+              </ul>
+              description
+            </div>
+          </div>
       {data.map((product) => {
         const slug = product.title
-          .toLowerCase()
-          .replace(/[^a-z0-9 -]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-');
+          .toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
 
         return (
-          <div
-            key={product.id}
-            className="border product group hover:shadow-md flex duration-300 flex-col hover:shadow-red-400 hover:translate-y-[-8px] transition-all h-[22rem] rounded-2xl w-60 py-3 px-1 bg-white overflow-hidden relative"
+          <div key={product.id} className="border product group hover:shadow-md flex duration-300 flex-col hover:shadow-red-400 hover:translate-y-[-8px] transition-all h-[22rem] rounded-2xl w-60 py-3 px-1 bg-white overflow-hidden relative"
           >
 
-            <div
+            {/* <div
               onClick={() => {
                 handleAddToWish(product)
               
@@ -48,22 +64,20 @@ const ProductCard = () => {
               className="cursor-pointer flex items-center justify-center rounded-md absolute top-5 -right-10 group-hover:right-5 bg-red-600 text-white h-10 w-10 z-10 duration-300"
             >
               <IoMdHeartEmpty className='text-[25px]' />
-            </div>
+            </div> */}
 
             <figure className="w-full h-52 overflow-hidden">
-              <img
-                src={product.image}
+              <img src={product.image} alt={product.image}
                 className="h-full w-full object-contain group-hover:scale-105 transition-all duration-300"
-                alt={product.image}
               />
             </figure>
             <div className="content h-[40%]  pt-4 px-3">
               <p className="title text-xs font-bold mb-2 group-hover:text-red-700 transition-all duration-300">
-                {product.title.slice(0, 28)}...
+                {product.title.slice(0, 25)}...
               </p>
               <ul className="flex items-center justify-between">
                 <div className="text-xs mb-2">
-                  <Link to={`/product/${slug}`}>
+                  {/* <Link to={`/product/${slug}`}>
                     <div data-tooltip={`Rs:${product.price}`} className="button">
                       <div className="button-wrapper">
                         <div className="text">Price</div>
@@ -83,27 +97,26 @@ const ProductCard = () => {
                         </span>
                       </div>
                     </div>
-                  </Link>
+                  </Link> */}
+                  Rs: {product.price}
                 </div>
-                <p className="text-xs mb-2">
+                {/* <p className="text-xs mb-2">
                   <span>Rating </span>
                   <span className="font-bold group-hover:text-yellow-500 transition-all duration-300">
                     {product.rating.rate}
                   </span>
-                </p>
+                </p> */}
               </ul>
               <Link
                 to={`/product/${slug}`}
                 className="font title text-xs hover:underline group-hover:text-red-700 transition-all duration-300"
               >
-                {product.description.slice(0, 55)}...
+                {product.description.slice(0, 50)}...
               </Link>
             </div>
           </div>
         );
       })}
-    
-
     </>
   );
 };

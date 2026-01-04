@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -26,10 +26,8 @@ const ProductsDetailsSlider = ({ product }) => {
           {imgs.map((i, index) => {
             return (
               <div key={index} className="z-10">
-                <img
-                  src={i}
+                <img src={i} alt="Image 1"
                   className="aspect-[16/10] md:aspect-auto object-contain"
-                  alt="Image 1"
                 />
               </div>
             );
